@@ -1,0 +1,64 @@
+.post-form-container {
+  width: clamp(20rem, 30vw, 25rem);
+  // min-height: 10rem;
+  margin-top: 3rem;
+  padding: 0.75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+
+  #header {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    textarea {
+      width: 100%;
+      outline: 0;
+      resize: none;
+    }
+
+    #btn-to-popup {
+      width: 12rem;
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+
+      color: $fg-bold;
+      font-weight: 700;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0.3rem;
+
+      #gif-logo {
+        padding: 0.2rem;
+        border-radius: 0.2rem;
+        width: 1.2rem;
+        text-align: center;
+
+        background-color: $bg-dim;
+        font-size: 0.4rem;
+        font-weight: 700;
+        color: $fg-light;
+      }
+    }
+
+    #post-submit-btn {
+      background-color: $btn-blue;
+      width: 5rem;
+      align-self: flex-end;
+      color: $fg-light;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+}

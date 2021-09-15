@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What The Gif</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Welcome to What The Gif</h2>
+      <h3>share posts with Gifs</h3>
+
+      <div class="post-form-container">
+        <section id="header">
+          <p>compose a post</p>
+        </section>
+        <form class="post-form">
+          <textarea
+            name="post-text"
+            id="message-text"
+            cols="30"
+            rows="10"
+            placeholder="type your message here..."
+          >
+          </textarea>
+
+          <section class="gif-search">
+            <button type="button" id="btn-to-popup">
+              <span id="gif-logo">GIF</span> GIF
+            </button>
+          </section>
+
+          <button type="submit" id="post-submit-btn">Post</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

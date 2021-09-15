@@ -1,0 +1,83 @@
+$primary-font: "Montserrat", sans-serif;
+$secondary-font: "Lora", serif;
+
+$fg-bold: #212121;
+$fg-dim: #313131;
+$fg-dimmer: #616161;
+$fg-light: #f5f5f5;
+
+$bg-dim: #666666;
+$bg-dimmer: #adadad;
+
+$btn-red: #e45858;
+$btn-green: #0daa63;
+$btn-blue: #398af5;
+$accent-color: #4262ff;
+$accent-color-lighter: #8092ec;
+$border-light: #c0c0c0;
+$focus-green: #4caf7d;
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  line-height: 1.3;
+  font-family: $primary-font;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+textarea {
+  font-family: $primary-font;
+}
+
+button {
+  border: 0;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.75rem;
+  transition: all 150ms ease-in-out;
+}
+
+img {
+  display: block;
+}
+
+.container {
+  width: 80%;
+  max-width: 1100px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 1rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  @media screen and (max-width: 600px) {
+    width: 90%;
+  }
+}
