@@ -32,6 +32,7 @@ button,
 input,
 textarea {
   font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
 }
 
 button {
@@ -129,32 +130,7 @@ img {
   position: relative;
 }
 
-.gif-search_popup {
-  position: absolute;
-  top: 130%;
-  height: 20rem;
-  width: 15rem;
-  padding: 0.5rem;
-  background-color: #fcfcfc;
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 0.3rem;
-}
-
-.gif-search_popup #gif-search_input {
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.3rem;
-  border: 1px solid #666666;
-}
-
-#btn-to-popup {
+#gif-search_popup-btn {
   width: 12rem;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
@@ -172,7 +148,7 @@ img {
   gap: 0.3rem;
 }
 
-#btn-to-popup #gif-logo {
+#gif-search_popup-btn #gif-logo {
   padding: 0.2rem;
   border-radius: 0.2rem;
   width: 1.2rem;
@@ -181,5 +157,34 @@ img {
   font-size: 0.4rem;
   font-weight: 700;
   color: #f5f5f5;
+}
+
+.gif-search_popup {
+  position: absolute;
+  top: 130%;
+  height: 20rem;
+  width: 15rem;
+  padding: 0.5rem;
+  background-color: #fcfcfc;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.3rem;
+}
+
+.gif-search_popup.show-popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.gif-search_popup #gif-search_input {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  border: 1px solid #666666;
 }
 /*# sourceMappingURL=style.css.map */
