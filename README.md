@@ -1,2 +1,3 @@
-# what-the-gif
-Post message with inserted Gifs
+# What The Git
+
+Handy application to create and post message with inserted Gifs
