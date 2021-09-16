@@ -80,6 +80,7 @@ const insertGifInPostForm = (e) => {
       postForm.removeChild(postForm.querySelector(".selected-gif-img"));
     }
     renderGifInPostForm(e);
+    gifSearchResults.innerHTML = "";
   }
 };
 
@@ -90,6 +91,7 @@ const renderPostCard = ({ postCardText, postCardGifUrl, postCardGifAlt }) => {
   const postCardPara = document.createElement("p");
   const postCardGif = document.createElement("img");
 
+  postCardPara.classList.add("post-card-text");
   postCardPara.innerText = postCardText;
   postCardGif.setAttribute("src", postCardGifUrl);
   postCardGif.setAttribute("alt", postCardGifAlt);
