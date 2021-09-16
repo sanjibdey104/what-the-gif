@@ -4,10 +4,12 @@ Handy application to create and post message with inserted GIFs.
 
 catch it live @
 
+### Feat
 - User can see the trending GIFs and select one from the list or 
 - search for specific GIFs
+- debounce logic to limit the number of API calls on search
 
-### How to use ?
+### How to implement ?
 - Create an account with Giphy
 - Create an app, basically register your application with them to get your API KEY
 - Use fetch or axios to fetch the data and render accordingly
