@@ -2,12 +2,13 @@
 
 Handy application to create and post message with inserted GIFs.
 
-catch it live @
+**catch it live @ https://what-the-gif.netlify.app/**
 
-### Feat
+### Features
 - User can see the trending GIFs and select one from the list or 
 - search for specific GIFs
 - debounce logic to limit the number of API calls on search
+- localStorage for data persistency
 
 ### How to implement ?
 - Create an account with Giphy
