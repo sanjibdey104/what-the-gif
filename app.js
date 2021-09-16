@@ -103,6 +103,13 @@ const renderPostCard = ({ postCardText, postCardGifUrl, postCardGifAlt }) => {
   postCardList.appendChild(postCard);
 };
 
+let gifPostsArr = [];
+
+const updateLocalStorage = (postArr) => {
+  let postsJson = JSON.stringify(postArr);
+  localStorage.setItem("gifPostsData", postsJson);
+};
+
 const initiatePostCardRendering = (e) => {
   e.preventDefault();
 
@@ -118,10 +125,31 @@ const initiatePostCardRendering = (e) => {
       postCardGifAlt,
     };
 
+    gifPostsArr.push(postCardContentObj);
+    updateLocalStorage(gifPostsArr);
     renderPostCard(postCardContentObj);
-    postForm.reset();
     postForm.removeChild(postGifImg);
+    postForm.reset();
   }
 };
 
 postForm.addEventListener("submit", initiatePostCardRendering);
+
+const renderGifPosts = (gifPosts) => {
+  gifPosts.forEach((post) => renderPostCard(post));
+};
+
+const fetchPostsFromLocalStorage = () => {
+  const gifPostsData = localStorage.getItem("gifPostsData");
+  const parsedPostsData = JSON.parse(gifPostsData);
+
+  if (!parsedPostsData) {
+    gifPostsArr = [];
+  } else {
+    gifPostsArr = parsedPostsData;
+  }
+
+  renderGifPosts(gifPostsArr);
+};
+
+fetchPostsFromLocalStorage();
