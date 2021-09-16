@@ -2,6 +2,7 @@
 const gifSearchPopupBtn = document.querySelector("#gif-search_popup-btn");
 const gifSearchPopup = document.querySelector(".gif-search_popup");
 const gifSearchInput = document.querySelector("#gif-search_input");
+const loader = document.querySelector("#loader");
 const gifSearchResults = document.querySelector(".gif-search_results");
 const postForm = document.querySelector(".post-form");
 const postTextInput = document.querySelector("#post-text-input");
@@ -31,12 +32,24 @@ const renderGifsInPopup = (dataArr) => {
   });
 };
 
+// show loader animation
+const showLoader = () => {
+  loader.classList.add("show");
+};
+
+// hide loader
+const removeLoader = () => {
+  loader.classList.remove("show");
+};
+
 // fetch trending GIFs on initial search window popup
 const fetchTrendingGifs = async () => {
   try {
+    showLoader();
     const res = await fetch(giphyTrendingEndpoint);
     const content = await res.json();
     renderGifsInPopup(content.data);
+    removeLoader();
   } catch (err) {
     console.log(err);
   }
@@ -49,9 +62,11 @@ const fetchSearchedGifs = async (e) => {
   if (searchQuery) {
     let giphySearchEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&limit=5&q=${searchQuery}`;
     try {
+      showLoader();
       const res = await fetch(giphySearchEndpoint);
       const content = await res.json();
       renderGifsInPopup(content.data);
+      removeLoader();
     } catch (err) {
       console.log(err);
     }
