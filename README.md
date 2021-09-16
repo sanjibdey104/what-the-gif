@@ -5,14 +5,17 @@ Handy application to create and post message with inserted GIFs.
 **catch it live @ https://what-the-gif.netlify.app/**
 
 ### Features
-- User can see the trending GIFs and select one from the list or 
-- search for specific GIFs
-- debounce logic to limit the number of API calls on search
+- User can create a post with a message and insert a GIF 
+- On first load, user can choose from the trending GIFs or 
+- Search for specific GIFs with keywords
+- Since, GIPHY has a cap on the API calls, in the current implementation
+  - There's a limit of 5 GIFs per API call (trending or keyword search) 
+  - Debounce logic to limit the number of API calls on keyword search 
 - localStorage for data persistency
 
 ### How to implement ?
 - Create an account with Giphy
-- Create an app, basically register your application with them to get your API KEY
+- From the dashboard "Create an app", basically register your application to get your API KEY
 - Use fetch or axios to fetch the data and render accordingly
  
 The reponse will have three parts
