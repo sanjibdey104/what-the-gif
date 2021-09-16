@@ -1,3 +1,4 @@
+// grabbing the necessary DOM elements
 const gifSearchPopupBtn = document.querySelector("#gif-search_popup-btn");
 const gifSearchPopup = document.querySelector(".gif-search_popup");
 const gifSearchInput = document.querySelector("#gif-search_input");
@@ -40,7 +41,7 @@ const fetchTrendingGifs = async () => {
 
 // fetch GIFs as per the search query
 const fetchSearchedGifs = async (e) => {
-  console.log("api called");
+  console.log("api called"); // to validate that debounce logic is working
   const searchQuery = e.target.value;
   if (searchQuery) {
     let giphySearchEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&limit=3&q=${searchQuery}`;
@@ -70,7 +71,7 @@ const debounceAndFetch = (fetcherFunc, delay) => {
 
 gifSearchInput.addEventListener(
   "keyup",
-  debounceAndFetch(fetchSearchedGifs, 300)
+  debounceAndFetch(fetchSearchedGifs, 300) // 300ms delay between each API call
 );
 
 // toggle GIF search popup window
