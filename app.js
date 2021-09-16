@@ -2,6 +2,7 @@ const gifSearchPopupBtn = document.querySelector("#gif-search_popup-btn");
 const gifSearchPopup = document.querySelector(".gif-search_popup");
 const gifSearchInput = document.querySelector("#gif-search_input");
 const gifSearchResults = document.querySelector(".gif-search_results");
+const postForm = document.querySelector(".post-form");
 const postTextInput = document.querySelector("#post-text-input");
 
 const giphyApiKey = "Xnxm7Myd7Kq7YrJgWupPTiqr9cGyVfyK";
@@ -58,21 +59,27 @@ const fetchSearchedGifs = async (e) => {
 
 gifSearchInput.addEventListener("keyup", fetchSearchedGifs);
 
-const insertGifInPost = (e) => {
+const renderGifInPostForm = (e) => {
+  const gifTitle = e.target.alt;
+  const gifUrl = e.target.src;
+  const selectedGifImage = document.createElement("img");
+  selectedGifImage.classList.add("selected-gif-img");
+  selectedGifImage.setAttribute("src", gifUrl);
+  selectedGifImage.setAttribute("alt", gifTitle);
+  postTextInput.parentNode.insertBefore(
+    selectedGifImage,
+    postTextInput.nextSibling
+  );
+  gifSearchPopup.classList.remove("show-popup");
+};
+
+const insertGifInPostForm = (e) => {
   if (e.target.classList.contains("gif-search_result-img")) {
-    console.dir(e.target);
-    const gifTitle = e.target.alt;
-    const gifUrl = e.target.src;
-    const selectedGifImage = document.createElement("img");
-    selectedGifImage.classList.add("selected-gif-img");
-    selectedGifImage.setAttribute("src", gifUrl);
-    selectedGifImage.setAttribute("alt", gifTitle);
-    postTextInput.parentNode.insertBefore(
-      selectedGifImage,
-      postTextInput.nextSibling
-    );
-    gifSearchPopup.classList.remove("show-popup");
+    if (postForm.querySelector(".selected-gif-img")) {
+      postForm.removeChild(postForm.querySelector(".selected-gif-img"));
+    }
+    renderGifInPostForm(e);
   }
 };
 
-document.addEventListener("click", insertGifInPost);
+document.addEventListener("click", insertGifInPostForm);
