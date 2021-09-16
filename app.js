@@ -12,18 +12,21 @@ let gifPostsArr = [];
 
 // API key would be kept hidden for production applications
 const giphyApiKey = "Xnxm7Myd7Kq7YrJgWupPTiqr9cGyVfyK";
-const giphyTrendingEndpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}&limit=3`;
+const giphyTrendingEndpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}&limit=1`;
 
 // render fetched GIFs in the search popup window
 const renderGifsInPopup = (dataArr) => {
   gifSearchResults.innerHTML = "";
   dataArr.forEach((data) => {
+    const gifId = data.id;
     const gifTitle = data.title;
     const gifUrl = data.images.downsized.url;
+
     const gifImage = document.createElement("img");
     gifImage.classList.add("gif-search_result-img");
     gifImage.setAttribute("src", gifUrl);
     gifImage.setAttribute("alt", gifTitle);
+    gifImage.setAttribute("id", gifId);
     gifSearchResults.appendChild(gifImage);
   });
 };
@@ -44,7 +47,7 @@ const fetchSearchedGifs = async (e) => {
   console.log("api called"); // to validate that debounce logic is working
   const searchQuery = e.target.value;
   if (searchQuery) {
-    let giphySearchEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&limit=3&q=${searchQuery}`;
+    let giphySearchEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&limit=5&q=${searchQuery}`;
     try {
       const res = await fetch(giphySearchEndpoint);
       const content = await res.json();
@@ -86,10 +89,12 @@ gifSearchPopupBtn.addEventListener("click", function () {
 
 // render selected GIF in post form
 const renderGifInPostForm = (e) => {
+  const gifId = e.target.id;
   const gifTitle = e.target.alt;
   const gifUrl = e.target.src;
   const selectedGifImage = document.createElement("img");
   selectedGifImage.classList.add("selected-gif-img");
+  selectedGifImage.setAttribute("id", gifId);
   selectedGifImage.setAttribute("src", gifUrl);
   selectedGifImage.setAttribute("alt", gifTitle);
   postTextInput.parentNode.insertBefore(
@@ -114,7 +119,12 @@ const insertGifInPostForm = (e) => {
 document.addEventListener("click", insertGifInPostForm);
 
 // render post card in the post list
-const renderPostCard = ({ postCardText, postCardGifUrl, postCardGifAlt }) => {
+const renderPostCard = ({
+  postCardId,
+  postCardText,
+  postCardGifUrl,
+  postCardGifAlt,
+}) => {
   const postCard = document.createElement("div");
   const postCardPara = document.createElement("p");
   const postCardGif = document.createElement("img");
@@ -125,6 +135,7 @@ const renderPostCard = ({ postCardText, postCardGifUrl, postCardGifAlt }) => {
   postCardGif.setAttribute("alt", postCardGifAlt);
 
   postCard.classList.add("post-card");
+  postCard.setAttribute("id", postCardId);
   postCard.appendChild(postCardPara);
   postCard.appendChild(postCardGif);
 
@@ -146,8 +157,10 @@ const initiatePostCardRendering = (e) => {
     const postGifImg = postForm.querySelector(".selected-gif-img");
     const postCardGifUrl = postGifImg.getAttribute("src");
     const postCardGifAlt = postGifImg.getAttribute("alt");
+    const postCardId = postGifImg.getAttribute("id");
 
     const postCardContentObj = {
+      postCardId,
       postCardText,
       postCardGifUrl,
       postCardGifAlt,
