@@ -40,6 +40,7 @@ const fetchTrendingGifs = async () => {
 
 // fetch GIFs as per the search query
 const fetchSearchedGifs = async (e) => {
+  console.log("api called");
   const searchQuery = e.target.value;
   if (searchQuery) {
     let giphySearchEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${giphyApiKey}&limit=3&q=${searchQuery}`;
@@ -55,7 +56,22 @@ const fetchSearchedGifs = async (e) => {
   }
 };
 
-gifSearchInput.addEventListener("keyup", fetchSearchedGifs);
+const debounceAndFetch = (fetcherFunc, delay) => {
+  let timer;
+  return function () {
+    let context = this;
+    let args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fetcherFunc.apply(context, args);
+    }, delay);
+  };
+};
+
+gifSearchInput.addEventListener(
+  "keyup",
+  debounceAndFetch(fetchSearchedGifs, 300)
+);
 
 // toggle GIF search popup window
 gifSearchPopupBtn.addEventListener("click", function () {
