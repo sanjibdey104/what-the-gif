@@ -4,6 +4,7 @@ const gifSearchInput = document.querySelector("#gif-search_input");
 const gifSearchResults = document.querySelector(".gif-search_results");
 const postForm = document.querySelector(".post-form");
 const postTextInput = document.querySelector("#post-text-input");
+const postCardList = document.querySelector(".post-card-list");
 
 const giphyApiKey = "Xnxm7Myd7Kq7YrJgWupPTiqr9cGyVfyK";
 const giphyTrendingEndpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}&limit=1`;
@@ -83,3 +84,42 @@ const insertGifInPostForm = (e) => {
 };
 
 document.addEventListener("click", insertGifInPostForm);
+
+const renderPostCard = ({ postCardText, postCardGifUrl, postCardGifAlt }) => {
+  const postCard = document.createElement("div");
+  const postCardPara = document.createElement("p");
+  const postCardGif = document.createElement("img");
+
+  postCardPara.innerText = postCardText;
+  postCardGif.setAttribute("src", postCardGifUrl);
+  postCardGif.setAttribute("alt", postCardGifAlt);
+
+  postCard.classList.add("post-card");
+  postCard.appendChild(postCardPara);
+  postCard.appendChild(postCardGif);
+
+  postCardList.appendChild(postCard);
+};
+
+const initiatePostCardRendering = (e) => {
+  e.preventDefault();
+
+  if (postForm.querySelector(".selected-gif-img") && postTextInput.value) {
+    const postCardText = postTextInput.value;
+    const postGifImg = postForm.querySelector(".selected-gif-img");
+    const postCardGifUrl = postGifImg.getAttribute("src");
+    const postCardGifAlt = postGifImg.getAttribute("alt");
+
+    const postCardContentObj = {
+      postCardText,
+      postCardGifUrl,
+      postCardGifAlt,
+    };
+
+    renderPostCard(postCardContentObj);
+    postForm.reset();
+    postForm.removeChild(postGifImg);
+  }
+};
+
+postForm.addEventListener("submit", initiatePostCardRendering);
